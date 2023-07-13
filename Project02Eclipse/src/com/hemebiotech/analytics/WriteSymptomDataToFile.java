@@ -9,12 +9,12 @@ import java.util.Map;
  * Simple copy in the out file of all entry without order or sorting
  */
 
-public class WriteSymptomDataToFile implements ISymptomsWriter {
+public class WriteSymptomDataToFile implements ISymptomWriter {
 
 	private String filepath = "..\\Result.out";
 
 	@Override
-	public void writeSymptoms(Map<String, Integer> symptoms) {
+	public void writeSymptom(Map<String, Integer> symptoms) {
 
 		try {
 
