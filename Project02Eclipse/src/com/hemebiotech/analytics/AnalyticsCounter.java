@@ -8,14 +8,18 @@ import java.util.TreeMap;
 
 public class AnalyticsCounter {
 
-	//class to call the methods in the main class.
-	
-	ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile();
-	WriteSymptomDataToFile writer = new WriteSymptomDataToFile();
+	// class to call the methods in the main class.
 
+	ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("");
+	WriteSymptomDataToFile writer = new WriteSymptomDataToFile("");
+	
 	List<String> result = new ArrayList<String>();
 	Map<String, Integer> symptoms = new HashMap<String, Integer>();
 
+	public void analyticsCounter() {
+		writeSymptoms(sortSymptoms(countSymptoms(getSymptoms())));
+	}
+	
 	public AnalyticsCounter(ReadSymptomDataFromFile reader, WriteSymptomDataToFile writer) {
 		this.reader = reader;
 		this.writer = writer;
@@ -52,7 +56,5 @@ public class AnalyticsCounter {
 	public void writeSymptoms(Map<String, Integer> orderSymptoms) {
 		writer.writeSymptom(orderSymptoms);
 	}
-	public static void main (String[] args) {
-		
-	}
+
 }

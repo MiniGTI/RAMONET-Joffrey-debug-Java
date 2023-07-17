@@ -11,8 +11,11 @@ import java.util.Map;
 
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
-	private String filepath = "..\\Result.out";
+	private String filepath = "";
 
+	public  WriteSymptomDataToFile (String filepath) {
+		this.filepath = filepath;
+	}
 	@Override
 	public void writeSymptom(Map<String, Integer> symptoms) {
 
