@@ -8,18 +8,19 @@ import java.util.List;
 
 /**
  * Simple brute force implementation
- *
  */
 public class ReadSymptomDataFromFile implements ISymptomReader {
 
+	/**
+	 * @param filepath a full or partial path to file with symptom strings in it,
+	 *                 one per line. Given in the main class.
+	 */
 	private String filepath = "";
 
 	/**
-	 * 
-	 * @param filepath a full or partial path to file with symptom strings in it,
-	 *                 one per line
+	 * @param filepath the path to the DATA file.
 	 */
-	public  ReadSymptomDataFromFile(String filepath) {
+	public ReadSymptomDataFromFile(String filepath) {
 		this.filepath = filepath;
 	}
 
@@ -41,7 +42,9 @@ public class ReadSymptomDataFromFile implements ISymptomReader {
 				e.printStackTrace();
 			}
 		}
-
+		/**
+		 * @return an ArrayList with all symptoms.
+		 */
 		return result;
 	}
 

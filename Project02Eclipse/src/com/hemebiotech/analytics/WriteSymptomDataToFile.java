@@ -6,16 +6,25 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Simple copy in the out file of all entry without order or sorting
+ * To write all Data in the Map, in the *.out file.
  */
 
 public class WriteSymptomDataToFile implements ISymptomWriter {
 
+	/**
+	 * @param filepath full or partial path to the *.out file. Given in the main
+	 *                 class.
+	 */
 	private String filepath = "";
 
-	public  WriteSymptomDataToFile (String filepath) {
+	/**
+	 * 
+	 * @param filepath the path to the out file.
+	 */
+	public WriteSymptomDataToFile(String filepath) {
 		this.filepath = filepath;
 	}
+
 	@Override
 	public void writeSymptom(Map<String, Integer> symptoms) {
 
