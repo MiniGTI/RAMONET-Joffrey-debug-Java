@@ -15,7 +15,7 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 	 * @param filepath full or partial path to the *.out file. Given in the main
 	 *                 class.
 	 */
-	private String filepath = "";
+	private String filepath;
 
 	/**
 	 * 
@@ -35,7 +35,6 @@ public class WriteSymptomDataToFile implements ISymptomWriter {
 			for (Map.Entry<String, Integer> entry : symptoms.entrySet()) {
 				writer.write(entry.getKey() + " - " + entry.getValue());
 				((BufferedWriter) writer).newLine();
-
 			}
 			writer.close();
 

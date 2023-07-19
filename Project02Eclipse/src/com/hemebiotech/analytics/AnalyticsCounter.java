@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
 
 /**
  * To write an ordered symptom list in a *.out file from a file list.
@@ -14,18 +15,11 @@ public class AnalyticsCounter {
 	/**
 	 * reader method input.
 	 */
-	ReadSymptomDataFromFile reader = new ReadSymptomDataFromFile("");
+	private ReadSymptomDataFromFile reader;
 	/**
 	 * writer method input.
 	 */
-	WriteSymptomDataToFile writer = new WriteSymptomDataToFile("");
-
-	/**
-	 * The method to call all methods in the good order.
-	 */
-	public void analyticsCounter() {
-		writeSymptoms(sortSymptoms(countSymptoms(getSymptoms())));
-	}
+	private WriteSymptomDataToFile writer;
 
 	/**
 	 * AnalyticsCounter constructor
@@ -37,15 +31,24 @@ public class AnalyticsCounter {
 		this.reader = reader;
 		this.writer = writer;
 	}
+	
+	/**
+	 * The method to call all methods in the good order.
+	 */
+	public void analyticsCounter() {
+		List<String> symptoms = getSymptoms();
+		Map<String, Integer> countSymptoms = countSymptoms(symptoms);
+		Map<String, Integer> sortSymptoms = sortSymptoms(countSymptoms);
+		writeSymptoms(sortSymptoms);
+	}
 
 	/**
 	 * input DATA
 	 * 
 	 * @return result ArrayList
 	 */
-	public List<String> getSymptoms() {
-		List<String> result = new ArrayList<String>();
-		return result = reader.getSymptoms();
+	private List<String> getSymptoms() {
+		return  reader.getSymptoms();
 	}
 
 	/**
@@ -54,16 +57,17 @@ public class AnalyticsCounter {
 	 * @param result ArrayList
 	 * @return symptoms Map
 	 */
-	public Map<String, Integer> countSymptoms(List<String> result) {
+	private Map<String, Integer> countSymptoms(List<String> result) {
 		Map<String, Integer> symptoms = new HashMap<String, Integer>();
 		for (String symptom : result) {
 			if (symptoms.containsKey(symptom)) {
 				symptoms.replace(symptom, symptoms.get(symptom) + 1);
 			} else {
-				symptoms.put(symptom, 1);
+				symptoms.put(symptom, 1);	
 			}
 		}
 		return symptoms;
+		
 	}
 
 	/**
@@ -72,11 +76,10 @@ public class AnalyticsCounter {
 	 * @param symptoms Map
 	 * @return orderSymptoms TreeMap
 	 */
-	public Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
-
+	private Map<String, Integer> sortSymptoms(Map<String, Integer> symptoms) {
 		Map<String, Integer> orderSymptoms = new TreeMap<String, Integer>(symptoms);
-		return orderSymptoms;
-
+		
+	return orderSymptoms;
 	}
 
 	/**
@@ -84,7 +87,7 @@ public class AnalyticsCounter {
 	 * 
 	 * @param orderSymptoms TreeMap
 	 */
-	public void writeSymptoms(Map<String, Integer> orderSymptoms) {
+	private void writeSymptoms(Map<String, Integer> orderSymptoms) {
 		writer.writeSymptom(orderSymptoms);
 	}
 
